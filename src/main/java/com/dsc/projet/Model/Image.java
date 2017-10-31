@@ -14,21 +14,27 @@ import lombok.Data;
 
 /**
  *
- * @author snianfo
+ * @author Noura
  */
 @Entity
 @Data
-public class Domain {
+public class Image {
+    
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     long id;
-    String nom;
+    
+    String url;
+    
+    String alt;
 
-    public Domain() {
+    public Image() {
+        
     }
-
-    public Domain(String nom) {
-        this.nom = nom;
+   
+    public Image(String url, String alt) {
+        this.url = url;
+        this.alt = alt;
     }
     
     

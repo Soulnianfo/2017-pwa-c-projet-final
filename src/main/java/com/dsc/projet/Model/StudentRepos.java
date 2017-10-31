@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dsc.projet;
+package com.dsc.projet.Model;
+
+import java.io.Serializable;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author snianfo
  */
-public class Competition {
+public interface StudentRepos extends CrudRepository<Student, Long>{
     
 }

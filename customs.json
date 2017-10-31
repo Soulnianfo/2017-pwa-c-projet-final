@@ -1,0 +1,12 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:text": {
+            "context": "p"
+        },
+        "th:each": {},
+        "th:href": {
+            "context": "link"
+        }
+    }
+}

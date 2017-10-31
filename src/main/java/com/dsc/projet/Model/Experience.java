@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dsc.projet;
+package com.dsc.projet.Model;
 
 /**
  *
  * @author snianfo
  */
-public class Company {
+public class Experience {
     
 }

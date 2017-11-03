@@ -29,15 +29,15 @@ public class ControllerStudent {
     
     @RequestMapping("/home")
     public String home(Model model){
-        Student student = new Student("nianfo","souleymane","17/09/1992","1234","snianfo","snianfo@gmail.com");
-        Project p1 = new Project("RestaurationPwa", "Creation d'une platfome permettant aux Utilisateurs de reserver en ligne", "student");
-        //Project p2 = new Project("PartageDoc", "Creation d'une platfome permettant aux Utilisateurs de partager des docs en ligne", "UJM");
+        Student student1 = new Student("nianfo","souleymane","17/09/1992","1234","snianfo","snianfo@gmail.com");
+        Project p1 = new Project("RestaurationPwa", "Creation d'une platfome permettant aux Utilisateurs de reserver en ligne", "Nianfo");
+        Project p2 = new Project("PartageDoc", "Creation d'une platfome permettant aux Utilisateurs de partager des docs en ligne", "UJM");
         
-       // repos.save(p2);
-       // studRepos.save(student);
-        repos.save(p1);
+       repos.save(p2);
+        studRepos.save(student1);
+        //repos.save(p1);
         model.addAttribute("projects",repos.findAll());
-       // model.addAttribute("student",studRepos.findOne(id));
+       model.addAttribute("student",studRepos.findOne((Long) student1.getId()));
  
         return "homeStudent";
     }
@@ -50,7 +50,8 @@ public class ControllerStudent {
     @RequestMapping("/monProfil")
     public String profil(Model model, @RequestParam("monId") Long id){
         
-     //  model.addAttribute("mesprojet", repos.exists(id));
+     model.addAttribute("myprojects", repos.findAll());
+     model.addAttribute("student", studRepos.findOne(id));
         return "profil";
     }
     

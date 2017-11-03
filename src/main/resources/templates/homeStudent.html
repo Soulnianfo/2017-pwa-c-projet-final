@@ -11,18 +11,29 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" th:href="@{/css/picnic-css.css}"/>
         <link rel="stylesheet" th:href="@{/css/style-css.css}"/>
+
+
     </head>
     <body>
-       <div> 
-            <a  class="button" th:href="@{/monProfil(monId=2)}" > mon profil </a> 
+        <div class="menu1"> 
+            <a  class="button" th:href="@{/monProfil(monId= ${student.id})}" > mon profil </a> 
         </div>
        
-        
-        <ul class="card" th:each="proj : ${projects}">
-            <li>
-                <a  th:href="@{/projectDetail(cid=${proj.id})}" th:text ="${proj.name}"></a>          
-            </li>
-        </ul>
+        <div class="great_windows">
+            <ul th:each="proj : ${projects}">
+                <li>                                     
+                    <nav class="demo">
+                        <a class="brand" th:text ="${proj.name}"></a>
+                        <span th:text="${proj.descrip}"></span>
+                        <div class="menu">
+                          <a href="#" class="pseudo button icon-picture" th:text="${proj.autor}"></a>
+                          <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${proj.id})}">More Details</a>
+                        </div>
+                    </nav>
+          
+                </li>
+            </ul>
+        </div>
         
     </body>
 </html>

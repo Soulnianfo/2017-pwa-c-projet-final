@@ -5,7 +5,6 @@
  */
 package com.dsc.projet.Model;
 
-import com.dsc.projet.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -35,14 +34,14 @@ public class Company {
     @OneToOne(cascade = CascadeType.ALL)
     Image img;
     
-    @ManyToMany
-    List<Domain> dom = new ArrayList<>();
+   // @ManyToMany
+    //List<Domain> dom = new ArrayList<>();
     
-    @OneToMany(cascade = CascadeType.ALL)
-    List<Project> projects = new ArrayList<>();
+    //@OneToMany(cascade = CascadeType.ALL)
+   // List<Project> projects = new ArrayList<>();
     
-    @OneToMany(cascade = CascadeType.ALL)
-    List<Competition> competitions = new ArrayList<>();
+    //@OneToMany(cascade = CascadeType.ALL)
+  //  List<Competition> competitions = new ArrayList<>();
 
     public Company() {
         
@@ -51,6 +50,6 @@ public class Company {
     public Company(String nom, String description, List<Domain> dom) {
         this.nom = nom;
         this.description = description;
-        this.dom = dom;
+      //  this.dom = dom;
     }
 }

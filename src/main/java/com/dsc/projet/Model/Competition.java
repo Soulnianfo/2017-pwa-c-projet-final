@@ -5,7 +5,6 @@
  */
 package com.dsc.projet.Model;
 
-import com.dsc.projet.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +17,7 @@ import lombok.Data;
 
 /**
  *
- * @author snianfo
+ * //@author snianfo
  */
 @Entity
 @Data
@@ -31,11 +30,11 @@ public class Competition {
     String titre;
     String description;
     
-    @ManyToMany
-    List<Domain> dom = new ArrayList<>();
+    //@ManyToMany
+    //List<Domain> dom = new ArrayList<>();
     
-    @ManyToMany
-    List<Skills> reqSkills = new ArrayList<>();
+    //@ManyToMany
+   // List<Skills> reqSkills = new ArrayList<>();
     Date begin;
     Date end;
 

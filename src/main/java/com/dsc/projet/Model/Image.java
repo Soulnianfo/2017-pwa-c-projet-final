@@ -5,7 +5,6 @@
  */
 package com.dsc.projet.Model;
 
-import com.dsc.projet.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

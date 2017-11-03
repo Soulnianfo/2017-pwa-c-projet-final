@@ -4,13 +4,44 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" th:href="@{/css/picnic-css.css}"/>
+        <link rel="stylesheet" th:href="@{/css/style-css.css}"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="menu1">
+            
+            <ul class="menu">
+                <li >
+                    <a class="button" href="#">My Formations</a>
+                    
+                </li>
+                <li >
+                    <a class="button" href="#">My Skills</a>
+                </li>
+                <li>
+                    <a class="button" href="#">My experiences</a>
+                </li>
+            </ul>
+        </div>
+        <div class="great_windows">
+            <ul th:each="proj : ${myprojects}">
+                <li>                                     
+                    <nav class="demo">
+                        <a class="brand" th:text ="${proj.name}"></a>
+                        <span th:text="${proj.descrip}"></span>
+                        <div class="menu">
+                          <a href="#" class="pseudo button icon-picture" th:text="${proj.autor}"></a>
+                          <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${proj.id})}">More Details</a>
+                        </div>
+                    </nav>
+          
+                </li>
+            </ul>
+        </div>
     </body>
 </html>

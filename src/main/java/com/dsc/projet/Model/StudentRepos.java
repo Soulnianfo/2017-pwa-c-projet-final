@@ -7,11 +7,13 @@ package com.dsc.projet.Model;
 
 import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author snianfo
  */
+@Repository
 public interface StudentRepos extends CrudRepository<Student, Long>{
     
 }

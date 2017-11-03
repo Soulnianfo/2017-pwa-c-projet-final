@@ -4,6 +4,9 @@
         "th:text": {
             "context": "p"
         },
+        "th:herf": {
+            "context": "a"
+        },
         "th:each": {},
         "th:href": {
             "context": "link"

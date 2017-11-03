@@ -5,7 +5,6 @@
  */
 package com.dsc.projet.Model;
 
-import com.dsc.projet.*;
 import org.springframework.data.repository.CrudRepository;
 
 /**

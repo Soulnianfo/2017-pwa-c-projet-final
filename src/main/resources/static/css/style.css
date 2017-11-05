@@ -1,4 +1,4 @@
-body > div {
+/*body > div {
   display: inline-block;
 }
 .menu1 {
@@ -11,4 +11,83 @@ body > div {
 }
 nav {
     position: initial;
+}*/
+
+body{
+    width: 100%;
+    margin: auto;
+    background: #eee;
+}
+
+#page{
+    width: 100%;
+    margin : auto;
+}
+
+#headd{
+    position: fixed;
+    width: 100%;
+    margin: auto;
+    background: #7a8b98;
+    color: white;
+    z-index: 1;
+}
+
+#top{
+    width: 70%;
+    margin: auto;
+    line-height: 50px;
+}
+
+#top > div{
+    display: inline-block;
+}
+
+#menu{
+    width: 70%;
+}
+
+#menu > div{
+    width: 32.5%;
+    display: inline-block;
+}
+
+#search{
+    width: 29%;
+}
+
+#bodyy{
+    width: 70%;
+    margin: auto;
+    padding-top: 65px; 
+}
+
+.left{
+    float: left;
+}
+.right{
+    float: right
+}
+
+header > div{
+    display: inline-block;
+}
+
+#foooter{
+    width: 100%;
+    text-align: center;
+}
+
+form > div > div{
+    display: inline-block;
+    width: 45%;
+    margin: 2% 2%;
+}
+
+.modal > article{
+    width: 70%;
+}
+
+select{
+    margin: 5px 0;
 }

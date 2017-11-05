@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/picnic.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        
+        <title>Mon Entreprise</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body th:inline="text">
+        <div id="page">
+            <div id="headd">
+                <div id="top">
+                    <div id="menu">
+                        <div>
+                           Profil 
+                        </div>
+                        <div>
+                            Messagérie
+                        </div>
+                        <div>
+                            Notifications
+                        </div>
+                    </div>
+                    <div id="search">
+                        <input type="text" placeholder="Recherche" size="40" maxlength="100"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="bodyy">
+                <div class="card genral">
+                    <div class="img left">
+                        <img th:src="@{/images/excilis.png}"/>
+                    </div>
+                    <div class="rigth info">
+                        <h1>[[${company.nom}]]</h1>
+                        <div>
+                            <span th:each="d : ${company.listDom}">
+                                [[${d.nom}]],
+                            </span>
+                        </div>
+                        <div>
+                            [[${company.ville}]] - 120 Abonés
+                        </div>
+                        <div>
+                            <button>Suivre</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card more">
+                       <h1> A PROPOS </h1>
+                </div>
+                <div class="card project">
+                    <h1> LES PROJETS </h1>
+                    
+                </div>
+                <div class="card compet">
+                       <h1> LES COMPETITIONS </h1>
+                </div>
+            </div>
+            
+            <div id="foooter">
+                <h1>LE FOOTER</h1>
+            </div>
+            
+        </div>
+    </body>
+</html>

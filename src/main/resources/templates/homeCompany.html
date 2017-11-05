@@ -6,11 +6,78 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mon Entreprise</title>
+        <meta charset="UTF-8"/>
+        <style>
+            body{
+                margin:0;
+                padding: 0;
+            }
+            #page{
+                width: 100%;
+                margin: auto;
+                background: #ccccff;
+            }
+            
+            #head{
+                position: fixed;
+                background: #7a8b98;
+                width: 100%;
+                color: white;
+            }
+            
+            #top{
+                width: 80%;
+                margin: auto;
+                line-height: 40px;
+            }
+            
+            #top div{
+                display: inline-block;
+            }
+            
+            #menu{
+                width: 70%;
+            }
+            
+            #menu > div{
+                width: 32.5%;
+            }
+            
+            #search{
+                width: 28%;
+            }            
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id="page">
+            <div id="head">
+                <div id="top">
+                    <div id="menu">
+                        <div>
+                           Profil 
+                        </div>
+                        <div>
+                            Messagérie
+                        </div>
+                        <div>
+                            Notifications
+                        </div>
+                    </div>
+                    <div id="search">
+                        <input type="text" placeholder="Recherche" size="50" maxlength="100"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="body">
+                
+            </div>
+            
+            <div id="footer">
+                
+            </div>
+            
+        </div>
     </body>
 </html>

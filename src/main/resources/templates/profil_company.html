@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/picnic.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        
+        <title>Mon Entreprise</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body th:inline="text">
+        <div id="page">
+            <div id="headd">
+                <div id="top">
+                    <div id="menu">
+                        <div>
+                           Profil 
+                        </div>
+                        <div>
+                            Messagérie
+                        </div>
+                        <div>
+                            Notifications
+                        </div>
+                    </div>
+                    <div id="search">
+                        <input type="text" placeholder="Recherche" size="40" maxlength="100"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="bodyy">
+                <div class="card genral">
+                    <div class="img left">
+                        <img th:src="@{/images/excilis.png}"/>
+                    </div>
+                    <div class="right info">
+                        <h1>[[${company.nom}]]</h1>
+                        <div>
+                            <span th:each="d : ${company.listDom}">
+                                [[${d.nom}]],
+                            </span>
+                        </div>
+                        <div>
+                            [[${company.ville}]] - 120 Abonés
+                        </div>
+                        <div>
+                            <button>Suivre</button>
+                        </div>
+                    </div>
+                </div>
+                <article class="card more">
+                    <header>
+                       <h3> A PROPOS </h3>
+                    </header>
+                    <footer>
+                        DU CONTENU ICI
+                    </footer>
+                </article>
+                <article class="card more">
+                    <header>
+                        <h3> LES PROJETS </h3>
+                       <label for="modal_1" class="button">+</label>
+
+                        <div class="modal">
+                          <input id="modal_1" type="checkbox" />
+                          <label for="modal_1" class="overlay"></label>
+                          <article>
+                            <header>
+                              <h3>Ajouter un nouveau projet</h3>
+                              <label for="modal_1" class="close">&times;</label>
+                            </header>
+                            <section class="content">
+                                <form>
+                                    <input type="text" placeholder="Titre du Project"/>
+                                    <div>
+                                        <div>
+                                            <span> Date Début</span>
+                                            <div>
+                                                <select>
+                                                    <option>Mois</option>
+                                                    <option>Janvier</option>
+                                                    <option>Février</option>
+                                                    <option>Mars</option>
+                                                    <option>Avril</option>
+                                                    <option>Mai</option>
+                                                    <option>Juin</option>
+                                                    <option>Juillet</option>
+                                                    <option>Août</option>
+                                                    <option>Septembre</option>
+                                                    <option>Octobre</option>
+                                                    <option>Novembre</option>
+                                                    <option>Décembre</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select>
+                                                    <option>Année</option>
+                                                    <option>2017</option>
+                                                    <option>2016</option>
+                                                    <option>2015</option>
+                                                    <option>2014</option>
+                                                    <option>2013</option>
+                                                    <option>2012</option>
+                                                    <option>2011</option>
+                                                    <option>2010</option>
+                                                    <option>2009</option>
+                                                    <option>2008</option>
+                                                    <option>2007</option>
+                                                    <option>2006</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span> Date Fin</span>
+                                            <div>
+                                                <select>
+                                                    <option>Mois</option>
+                                                    <option>Janvier</option>
+                                                    <option>Février</option>
+                                                    <option>Mars</option>
+                                                    <option>Avril</option>
+                                                    <option>Mai</option>
+                                                    <option>Juin</option>
+                                                    <option>Juillet</option>
+                                                    <option>Août</option>
+                                                    <option>Septembre</option>
+                                                    <option>Octobre</option>
+                                                    <option>Novembre</option>
+                                                    <option>Décembre</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select>
+                                                    <option>Année</option>
+                                                    <option>2017</option>
+                                                    <option>2016</option>
+                                                    <option>2015</option>
+                                                    <option>2014</option>
+                                                    <option>2013</option>
+                                                    <option>2012</option>
+                                                    <option>2011</option>
+                                                    <option>2010</option>
+                                                    <option>2009</option>
+                                                    <option>2008</option>
+                                                    <option>2007</option>
+                                                    <option>2006</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea placeholder="Description"></textarea>
+                                </form>
+                            </section>
+                            <footer>
+                              <a class="button" href="#">See offer</a>
+                              <label for="modal_1" class="button dangerous">
+                                Cancel
+                              </label>
+                            </footer>
+                          </article>
+                        </div>
+                    </header>
+                    <footer>
+                        DU CONTENU ICI
+                    </footer>
+                </article>
+                <article class="card more">
+                    <header>
+                       <h3> LES COMPETITION </h3>
+                       <button> + </button>
+                    </header>
+                    <footer>
+                        DU CONTENU ICI
+                    </footer>
+                </article>
+            </div>
+            
+            <div id="foooter">
+                <h1>LE FOOTER</h1>
+            </div>
+            
+        </div>
+    </body>
+</html>

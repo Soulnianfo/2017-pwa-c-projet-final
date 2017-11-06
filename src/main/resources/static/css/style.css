@@ -88,6 +88,47 @@ form > div > div{
     width: 70%;
 }
 
+/*CSS ADEL*/
+
 select{
     margin: 5px 0;
 }
+
+
+#log {
+margin-left: 1050px;
+border: 1px solid ;
+}
+#psw {
+margin-left: 10px; 
+margin-right: 5px;
+border: 1px solid ;
+}
+
+#button{
+    margin-left: 510px;
+    /*  // <button for ="modal_1" id="companyButton" class="mainButton">Company</button>*/
+    font-size: 35px;
+}
+#studentButton{
+    font-size: 35px;
+}
+.content {
+    margin-top: 270px;
+   
+	
+    
+}
+
+#form {
+    margin-bottom: 10px;
+}
+
+#header {
+    border: 1px solid;
+    background-color:  gray;
+}
+#buttonColor {
+    background-color: black;
+}
+

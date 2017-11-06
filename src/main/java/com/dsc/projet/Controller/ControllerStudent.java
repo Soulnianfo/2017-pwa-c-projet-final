@@ -5,10 +5,10 @@
  */
 package com.dsc.projet.Controller;
 
-import com.dsc.projet.Model.Project;
-import com.dsc.projet.Model.ProjectRepos;
-import com.dsc.projet.Model.Student;
-import com.dsc.projet.Model.StudentRepos;
+import com.dsc.projet.model.Project;
+import com.dsc.projet.model.ProjectRepos;
+import com.dsc.projet.model.Student;
+import com.dsc.projet.model.StudentRepos;
 import java.util.ArrayList;
 import javax.inject.Inject;
 import org.springframework.ui.Model;

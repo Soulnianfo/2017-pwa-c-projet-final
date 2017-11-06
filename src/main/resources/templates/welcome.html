@@ -1,13 +1,75 @@
 <!DOCTYPE html>
 <!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>welcome</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         <link rel="stylesheet" th:href="@{/picnic.css}"/>
+         <link rel="stylesheet" th:href="@{/styyle.css}"/>
     </head>
-    <body>
-        <div>TODO write content</div>
+    
+    
+    <body th:inline="text">
+        <div id="header">
+                <label><input id="log" type="text" style="width: 200px" placeholder="Login"/> </label>
+                <label><input id="psw" type="password" style="width: 200px" placeholder="Password"/></label> 
+                <button id="buttonColor">Sing in</button>
+         </div>
+        <div id="button" class="content">
+                    <label for="modal_1" class="button" id="buttonColor">Company</label>
+                    <label for="modal_2" class="button" id="buttonColor">Student</label>
+            <div class="content">
+
+                    <div class="modal">
+                        <input id="modal_1" type="checkbox" /> <!-- il cache le div qu on va créer a la suite -->
+                        <label for="modal_1" class="overlay"></label> <!--on clickant sur le boutton il permet d'avoir un pop dynamique -->
+                            <article>
+                                <header>
+                                  <h3>Sign up Company</h3>
+                                     <label for="modal_1" class="close">&times;</label> <!--affiche la croix qui permet de fermer la fenetre -->
+                                </header>
+                                <form th:action="@{/addCompany}" method="POST" th:object="${comp}">
+                                    <label><input id="form" type="text" placeholder="Username" th:field="*{username}"/></label>
+                                    <label><input id="form" type="text" placeholder="Email" th:field="*{email}"/></label> 
+                                    <label><input id="form" type="password" placeholder="Password" th:field="*{pswd}"/></label>
+                                    <textarea placeholder="Discription" name="discription" th:field="*{discription}"></textarea>
+                                  <footer>
+                                   <button class='success'>Submit</button>
+                                  </footer>
+                                </form>
+
+                                
+                            </article>
+                    </div>
+                    <div class="modal">
+                        <input id="modal_2" type="checkbox" /> <!-- il cache le div qu on va créer a la suite -->
+                        <label for="modal_2" class="overlay"></label> <!--on clickant sur le boutton il permet d'avoir un pop dynamique -->
+                            <article>
+                                <header>
+                                 <h3>Sign up student</h3>
+                                     <label for="modal_2" class="close">&times;</label> <!--affiche la croix qui permet de fermer la fenetre -->
+                                </header>
+                                <form >
+                                    <label><input id="form" type="text" placeholder="Username"/></label>
+                                    <label><input id="form" type="text" placeholder="Name"/></label> 
+                                    <label><input id="form" type="text" placeholder="Last Name"/></label> 
+                                    <label><input id="form" type="email" placeholder="Email"/></label>
+                                    <label><input id="form" type="password" placeholder="Password"/></label>
+                                </form>
+
+                                <footer>
+                                   <button class='success'>Submit</button>
+                                 </footer>
+                            </article>
+                    </div>
+            </div>
+        </div>
+   
     </body>
 </html>

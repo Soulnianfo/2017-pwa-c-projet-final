@@ -1,17 +1,19 @@
-/*body > div {
+body > div {
   display: inline-block;
 }
 .menu1 {
     background: yellowgreen;
     position: fixed;
     height: 800px;
+   
 }
 .great_windows{
     padding-left: 180px;
+    
 }
 nav {
     position: initial;
-}*/
+}
 
 body{
     width: 100%;

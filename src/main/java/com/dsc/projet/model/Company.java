@@ -44,6 +44,9 @@ public class Company {
     
     @OneToMany(cascade = CascadeType.ALL)
     List<Competition> competitions = new ArrayList<>();
+    
+    @ManyToMany
+    List<Student> followers = new ArrayList<>();
 
     public Company() {
         

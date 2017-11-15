@@ -30,11 +30,9 @@ public class Competition {
     String titre;
     String description;
     
-    //@ManyToMany
-    //List<Domain> dom = new ArrayList<>();
+    @ManyToMany
+    List<Skills> reqSkills = new ArrayList<>();
     
-    //@ManyToMany
-   // List<Skills> reqSkills = new ArrayList<>();
     Date begin;
     Date end;
 
@@ -42,12 +40,13 @@ public class Competition {
         
     }
     
-    public Competition(long id, String titre, String description, Date begin, Date end) {
+    public Competition(long id, String titre,  Date begin, Date end, String description, List<Skills> l) {
         this.id = id;
         this.titre = titre;
         this.description = description;
         this.begin = begin;
         this.end = end;
+        this.reqSkills = l;
     }           
     
 }

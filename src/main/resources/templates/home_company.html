@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Mon Entreprise</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/picnic.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        <script type="text/javascript" th:src="@{/js/vue.js}"></script>
+    </head>
+    <body>
+        <div id="page">
+            <div id="headd">
+                <div id="top">
+                    <div id="menu">
+                        <div>
+                           Profil 
+                        </div>
+                        <div>
+                            Messagérie
+                        </div>
+                        <div>
+                            Notifications
+                        </div>
+                    </div>
+                    <div id="search">
+                        <input type="text" v-model="leMessage" size="40" maxlength="100"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="bodyy">
+                
+            </div>
+            
+            <div id="foooter">
+                
+            </div>
+            
+        </div>
+    </body>
+</html>

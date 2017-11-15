@@ -10,8 +10,8 @@ and open the template in the editor.
         
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-         <link rel="stylesheet" th:href="@{/picnic.css}"/>
-         <link rel="stylesheet" th:href="@{/styyle.css}"/>
+         <link rel="stylesheet" th:href="@{/css/picnic.css}"/>
+         <link rel="stylesheet" th:href="@{/css/style.css}"/>
     </head>
     
     
@@ -38,7 +38,7 @@ and open the template in the editor.
                                     <label><input id="form" type="text" placeholder="Username" th:field="*{username}"/></label>
                                     <label><input id="form" type="text" placeholder="Email" th:field="*{email}"/></label> 
                                     <label><input id="form" type="password" placeholder="Password" th:field="*{pswd}"/></label>
-                                    <textarea placeholder="Discription" name="discription" th:field="*{discription}"></textarea>
+                                    <textarea placeholder="Discription" name="discription" th:field="*{description}"></textarea>
                                   <footer>
                                    <button class='success'>Submit</button>
                                   </footer>
@@ -55,17 +55,18 @@ and open the template in the editor.
                                  <h3>Sign up student</h3>
                                      <label for="modal_2" class="close">&times;</label> <!--affiche la croix qui permet de fermer la fenetre -->
                                 </header>
-                                <form >
+                                 <form th:action="@{/addStudent}" method="POST" th:object="${stud}">
                                     <label><input id="form" type="text" placeholder="Username"/></label>
                                     <label><input id="form" type="text" placeholder="Name"/></label> 
                                     <label><input id="form" type="text" placeholder="Last Name"/></label> 
                                     <label><input id="form" type="email" placeholder="Email"/></label>
                                     <label><input id="form" type="password" placeholder="Password"/></label>
+                                    <footer>
+                                    <button class='success'>Submit</button>
+                                    </footer>
                                 </form>
 
-                                <footer>
-                                   <button class='success'>Submit</button>
-                                 </footer>
+                                
                             </article>
                     </div>
             </div>

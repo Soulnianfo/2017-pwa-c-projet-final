@@ -27,11 +27,15 @@ public class Company {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)        
     long id;
-    String nom;
+    String username;
+    String email;
+    String pswd;
+    String description;
     
+    String nom;
     String ville;
     
-    String description;
+    
     
     @OneToOne(cascade = CascadeType.ALL)
     public Image img;
@@ -52,6 +56,14 @@ public class Company {
         
     }
 
+        public Company(String username, String email,String pswd, String description) {
+        this.username = username;
+        this.email = email;
+        this.description = description;
+        this.pswd = pswd;
+    }
+    
+    
     public Company(String nom, String v, String description, List<Domain> dom) {
         this.nom = nom;
         this.ville = v;

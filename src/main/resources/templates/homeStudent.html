@@ -7,27 +7,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" th:href="@{/css/picnic.css}"/>
         <link rel="stylesheet" th:href="@{/css/style.css}"/>
-
-
     </head>
     <body>
-        <div class="menu1"> 
-            <a  class="button" th:href="@{/monProfil(monId= ${student.id})}" > mon profil </a> 
+         <div id="page">
+            <div id="headd">
+                <div id="top">
+                    <div id="menu">
+                        <div>
+                           <a th:href="@{/monProfil(monId= ${student.id})}" > Mon profil </a>  
+                        </div>
+                        <div>
+                            Messagérie
+                        </div>
+                        <div>
+                            Notifications
+                        </div>
+                    </div>
+                    <div id="search">
+                        <input type="text" placeholder="Recherche" size="40" maxlength="100"/>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <div class=" menu1 windows"> 
+            <div>
+                
+                <label class="dropimage profile">
+                    <img th:src="@{images/excilis.png}" name="filea" title="Drop image or click me" type="file"/>
+                </label>
+
+            </div>
+            <h3>
+            <span th:text="${student.name}"></span>
+            <span th:text="${student.firstName}"></span>
+            </h3>
         </div>
        
-        <div class="great_windows">
-            <ul th:each="proj : ${projects}">
-                <li>                                     
-                    <nav class="demo">
+        <div class="windows greatWindows">
+            
+            <ul th:each="proj : ${projects}" >
+                <li class="homeProject">                                     
+                    
                         <a class="brand" th:text ="${proj.name}"></a>
-                        <span th:text="${proj.descrip}"></span>
-                        <div class="menu">
-                          <a href="#" class="pseudo button icon-picture" th:text="${proj.autor}"></a>
+                        <label> Publié par </label>
+                        <a href="#" th:text="${proj.autor}"></a>
+                         <hr/>
+                         <p th:text="${proj.descrip} "></p>
+  
+                        <div>
+                          
                           <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${proj.id})}">More Details</a>
                         </div>
-                    </nav>
+                   
           
                 </li>
+                <hr/>
             </ul>
         </div>
         

@@ -7,6 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" th:href="@{/css/picnic.css}"/>
         <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <script src="vue.js"></script>
+        
     </head>
     <body>
         
@@ -53,7 +55,7 @@
                 </div>
                 <article class="card more">
                     <header>
-                       <h3> A PROPOS </h3>
+                        <a href="#"> <h3> A PROPOS </h3> </a>
                     </header>
                     <footer>
                         DU CONTENU ICI
@@ -61,7 +63,7 @@
                 </article>
                 <article class="card more">
                     <header>
-                        <h3> LES PROJETS </h3>
+                        <a href="#"> <h3> LES PROJETS </h3> </a>
                        <label for="modal_1" class="button">+</label>
 
                         <div class="modal">
@@ -164,12 +166,48 @@
                         </div>
                     </header>
                     <footer>
-                        DU CONTENU ICI
+                            <div id="project">
+                                <ul>
+                                  <li class="list" v-if="show1">                                     
+                                        <nav class="demo">                                           
+                                            <a class="brand left" th:text ="${myprojects[0].name}"></a>                                           
+                                            <div class="menu">
+                                              
+                                              <a href="#" class="pseudo button icon-picture" th:text="${myprojects[0].autor}"></a>
+                                              <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${myprojects[0].id})}">More Details</a>
+                                            </div>                                           
+                                        </nav>
+                                    </li>
+                                    <template v-if ="show">
+                                        <button  v-on:click="Show2"> show all</button>
+                                    </template>
+                                </ul> 
+                                <template v-if="show2">
+                                    <ul th:each="proj : ${myprojects}">
+                                        <li class="list">                                     
+                                            <nav class="demo">
+                                                <a class="brand" th:text ="${proj.name}"></a>
+                                                
+                                                <div class="menu">
+                                                  <a href="#" class="pseudo button icon-picture" th:text="${proj.autor}"></a>
+                                                  <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${proj.id})}">More Details</a>
+                                                </div>
+                                            </nav>
+
+                                        </li>
+                                        <hr/>
+                                    </ul> 
+                                </template>
+                                
+                                <template v-if ="!show">
+                                    <button  v-on:click="Hidden2">&DoubleUpArrow;</button>
+                                </template>
+                            </div>
                     </footer>
                 </article>
                 <article class="card more">
                     <header>
-                       <h3> LES COMPETITION </h3>
+                        <a href="#">  <h3> LES COMPETITION </h3> </a>
                        <button> + </button>
                     </header>
                     <footer>
@@ -180,10 +218,52 @@
                 <article class="card more">
                     <header>
                        <h3> SKILLS </h3>
-                       <button> + </button>
+                       
+                       <label for="modal_2" class="button">+</label>
+
+                        <div class="modal">
+                          <input id="modal_2" type="checkbox" />
+                          <label for="modal_2" class="overlay"></label>
+                          <article>
+                            <header>
+                              <h3>choiced or put your skill</h3>
+                              <label for="modal_2" class="close">&times;</label>
+                            </header>
+                            <form method="post" th:action="@{/addskill}" th:object="${skill}">
+                            <section class="content">
+                                
+                                    <select>
+                                        <option>Spring Boot</option>
+                                        <option>Vue</option>
+                                        <option>thymeleaf</option>
+                                        <option>HTML</option>
+                                        <option>CSS</option>
+                                    </select>
+                                    <input type="text" th:field="*{label}" placeholder="put your skill"/>
+                                    
+                               
+                            </section>
+                            <footer>
+                              <input class="button" type="submit" value="add" />
+                              <label for="modal_2" class="button dangerous">
+                                Cancel
+                              </label>
+                            </footer>
+                                 </form>
+                          </article>
+                        </div>
+
+                       
+                       
                     </header>
                     <footer>
-                        DU CONTENU ICI
+                            <ul class="skill">                          
+                                <div th:each="skill : ${skills}">
+                                    <li th:text ="${skill.label}"></li>
+                                </div>
+                            </ul>
+                            
+                     
                     </footer>
                 </article>
             </div>
@@ -193,10 +273,78 @@
             </div>
             
         </div>
+      
+        <div id="app">
+          
+        </div>
+        <div v-if="type=== 1">
+         <p>affichage</p>
+        </div>
+        <div id="pp">
+            <template v-if="itemsInStock">
+                
+            </template>
+                <button v-on:click ="myfunction">button</button>
+                <button v-on:click ="myfunction2">button2</button>
+        </div>
+        <div id="aff">
+            <aff>message</aff>
+        </div>
         
-        
-        
-        
+ 
+        <script>
+              var app = new Vue({
+                  el: '#project',
+                    data: {
+                            show: true,
+                            show1: true,
+                            show2: false
+                          
+                    },
+                    methods: {
+                       Show :function() {
+                            this.show = true ;
+                        },
+                        Hidden : function() {
+                            this.show = false ;
+                        },
+                        Show1 :function() {
+                            this.show1 = true ;
+                        },
+                        Hidden1 : function() {
+                            this.show1 = false ;
+                        },
+                       Show2 :function() {
+                            this.show2 = true;
+                            this.show1 = false;
+                            this.show = false;
+                        },
+                        Hidden2 : function() {
+                            this.show2 = false;
+                            this.show1 = true;
+                            this.show = true;
+                        } 
+                       
+                       
+                        
+                    }
+                    
+                  
+              });
+              new Vue({
+                    el: '#aff',
+                    elementDirectives: {
+                      aff: {
+                        bind: function() {
+                          this.el.style.visibility = 'hidden';
+                        }
+                      }
+                    }
+                  });
+
+
+     
+        </script>
         <!--<div class="menu1">  
         </div>
         <div class="great_windows">

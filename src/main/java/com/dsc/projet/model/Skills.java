@@ -21,7 +21,7 @@ public class Skills {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
-    
+  
     String label;
 
     public Skills() {

@@ -1,15 +1,66 @@
 .menu1 {
     background: yellowgreen;
     position: fixed;
-    height: 800px;
-   
+    height: 100%;
+    width: 20%;
+    padding-top: 60px;
 }
-.great_windows{
-    padding-left: 180px;
-    
+.menu1 > h3 {
+    text-align: center;
+    margin: auto;
+    background-color: white;
+
 }
-nav {
+.greatWindows {
+    padding-top: 100px;
+    padding-left: 300px;
+}
+nav .menu{
+    padding-top: 20px;
+}
+
+body > .windows{
+    display: inline-block;
+}
+.editproject{
+    float: right;
+    padding-top: 30px;
+}
+.skill > div {
+    list-style-type: none;
+    display: inline-block;
+    padding-left: 20px;
+    padding-bottom: 10px;
+
+}
+.skill > div > li{
+ background: #ddd;
+ padding-left: 10px;
+ padding-right: 10px;
+
+}
+.homeProject{
+    padding: 60px;
+    background: white;
+    list-style: none;
+
+}
+.profile {
+  border-radius: 50%;     /* Make it a circle */
+  padding-bottom: 100%;   /* 100% height (ratio 1) */
+}
+
+.brand{
+ 
+}
+.list {
+    list-style: none;
+    background-color: #816668;
+}
+.demo {
     position: initial;
+    z-index: 0;
+    box-shadow: 0 0 0.0em;
 }
 
 body{

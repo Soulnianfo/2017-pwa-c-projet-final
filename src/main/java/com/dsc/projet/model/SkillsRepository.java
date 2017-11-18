@@ -6,11 +6,13 @@
 package com.dsc.projet.model;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Noura
  */
+@Repository
 public interface SkillsRepository extends CrudRepository<Skills, Long> {
     
 }

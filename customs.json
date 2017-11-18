@@ -1,8 +1,24 @@
 {
-    "elements": {},
+    "elements": {
+        "aff": {}
+    },
     "attributes": {
         "th:text": {
             "context": "p"
+        },
+        "v-bind:class": {
+            "context": "div"
+        },
+        "v-cache": {},
+        "v-bind:style": {
+            "context": "div"
+        },
+        "@click": {},
+        "v-on:click": {
+            "context": "a"
+        },
+        "v-titre": {
+            "context": "div"
         },
         "th:herf": {
             "context": "a"

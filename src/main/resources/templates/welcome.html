@@ -16,29 +16,46 @@ and open the template in the editor.
     
     
     <body th:inline="text" style="background-image:url(/images/welcome.jpg)" >
-        <div id="header">
-                <label><input id="log" type="text" style="width: 200px" placeholder="Login"/> </label>
-                <label><input id="psw" type="password" style="width: 200px" placeholder="Password"/></label> 
-                <button id="buttonColor">Sing in</button>
+         <div id="header">
+           <!--  <form th:action="@{/checkLogin}" method="POST" th:object="${log}">-->
+                  <form th:action="@{/login}" method="POST" th:object="${log}">
+                    <div th:if="${param.error}" class="alert alert-error">
+                             Invalid username and password.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                            You have been logged out.
+                    </div>
+                    <div id="connex">
+                         <input class="connex" type="text" placeholder="Login" th:field="*{username}" required="required"/> 
+                         <input class="connex" type="password" placeholder="Password" th:field="*{password}" required="required"/>
+                         <input type="submit" id="buttonColor" value="Sign In"/>
+                    </div>
+             </form>   
          </div>
-        <div id="button" class="contentt">
+        <p id="NewMember"> New Member  ?  </p>
+        <div id="button" class="comp_stud_button">
                     <label for="modal_1" class="button" id="buttonColor">Company</label>
                     <label for="modal_2" class="button" id="buttonColor">Student</label>
-            <div class="content">
+        </div>
+        
+            <div class="content" >
 
-                    <div class="modal">
+                    <div class="modal" >
                         <input id="modal_1" type="checkbox" /> <!-- il cache le div qu on va créer a la suite -->
                         <label for="modal_1" class="overlay"></label> <!--on clickant sur le boutton il permet d'avoir un pop dynamique -->
-                            <article>
+                        <div>
+                        <article >
                                 <header>
                                   <h3>Sign up Company</h3>
                                      <label for="modal_1" class="close">&times;</label> <!--affiche la croix qui permet de fermer la fenetre -->
                                 </header>
-                                <form th:action="@{/addCompany}" method="POST" th:object="${comp}">
-                                    <label><input id="form" type="text" placeholder="Username" th:field="*{username}"/></label>
-                                    <label><input id="form" type="text" placeholder="Email" th:field="*{email}"/></label> 
-                                    <label><input id="form" type="password" placeholder="Password" th:field="*{pswd}"/></label>
-                                    <textarea placeholder="Discription" name="discription" th:field="*{description}"></textarea>
+                                <form th:action="@{/addCompany}" method="POST" th:object="${comp}" >
+                                    <input id="form" type="text" placeholder="Username" th:field="*{username}" required="required"/>
+                                    <input id="form" type="text" placeholder="Company Name" th:field="*{name}" required="required"/>
+
+                                    <input id="form" type="text" placeholder="Email" th:field="*{email}" required="required"/>
+                                    <input id="form" type="password" placeholder="Password" th:field="*{pswd}" required="required"/>
+                                    <textarea id="form" placeholder="Discription" name="discription" th:field="*{description}"></textarea>
                                   <footer>
                                    <button class='success'>Submit</button>
                                   </footer>
@@ -46,21 +63,23 @@ and open the template in the editor.
 
                                 
                             </article>
+                          </div> 
                     </div>
                     <div class="modal">
                         <input id="modal_2" type="checkbox" /> <!-- il cache le div qu on va créer a la suite -->
                         <label for="modal_2" class="overlay"></label> <!--on clickant sur le boutton il permet d'avoir un pop dynamique -->
-                            <article>
+                        <div>   
+                        <article>
                                 <header>
                                  <h3>Sign up student</h3>
                                      <label for="modal_2" class="close">&times;</label> <!--affiche la croix qui permet de fermer la fenetre -->
                                 </header>
                                  <form th:action="@{/addStudent}" method="POST" th:object="${stud}">
-                                    <label><input id="form" type="text" placeholder="Username"/></label>
-                                    <label><input id="form" type="text" placeholder="Name"/></label> 
-                                    <label><input id="form" type="text" placeholder="Last Name"/></label> 
-                                    <label><input id="form" type="email" placeholder="Email"/></label>
-                                    <label><input id="form" type="password" placeholder="Password"/></label>
+                                    <input id="form" type="text" placeholder="Username" th:field="*{username}" required="required"/>
+                                    <input id="form" type="text" placeholder="Name" th:field="*{name}" required="required"/>
+                                    <input id="form" type="text" placeholder="First Name" th:field="*{firstName}" required="required"/> 
+                                    <input id="form" type="email" placeholder="Email" th:field="*{email}" required="required"/>
+                                    <input id="form" type="password" placeholder="Password" th:field="*{passWord}" required="required"/>
                                     <footer>
                                     <button class='success'>Submit</button>
                                     </footer>
@@ -68,9 +87,10 @@ and open the template in the editor.
 
                                 
                             </article>
+                        </div>
                     </div>
             </div>
-        </div>
+      
    
     </body>
 </html>

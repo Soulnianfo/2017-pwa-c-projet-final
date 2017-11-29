@@ -5,16 +5,10 @@
  */
 package com.dsc.projet.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import lombok.Data;
 
@@ -24,35 +18,38 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Project implements Serializable{
+public class CompanyProject {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     Long id;
-    public String title;
-    public String descrip;
-    public String beginMonth;
-    public String beginYear;
-    public String endMonth;
-    public String endYear;
-    @ManyToOne(cascade = CascadeType.ALL)
-    public Student author;
-    @ManyToMany
-    public List<Student> contributors = new ArrayList<>();
-    public Project(){
+    String title;
+    String descrip;
+    
+    @ManyToOne
+    Company creator;
+    
+    String beginMonth;
+    
+    String beginYear;
+    
+    String endMonth;
+    
+    String endYear;
+    
+    public CompanyProject(){
         
     }
 
-    public Project( String title, String descrip, String beginMonth, String beginYear, String endMonth, String endYear, Student author) {
+    public CompanyProject(String title, String descrip, Company creator, String beginMonth, String beginYear, String endMonth, String endYear) {
         
         this.title = title;
         this.descrip = descrip;
+        this.creator = creator;
         this.beginMonth = beginMonth;
         this.beginYear = beginYear;
         this.endMonth = endMonth;
         this.endYear = endYear;
-        this.author = author;
     }
 
    
-    
 }

@@ -7,13 +7,14 @@ package com.dsc.projet.model;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
  * @author Noura
  */
+@CrossOrigin("*")
 @Repository
-public interface CompanyRepository extends CrudRepository<Company, Long> {
-  public Company findByUsername(String username);
+public interface CompanyProjectRepository extends CrudRepository<CompanyProject, Long> {
     
 }

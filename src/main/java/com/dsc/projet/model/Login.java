@@ -6,29 +6,31 @@
 package com.dsc.projet.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Data;
 
 /**
  *
- * @author snianfo
+ * @author Smaïl
  */
-@Entity
 @Data
-public class Domain {
+@Entity
+public class Login {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    long id;
-    String label;
-
-    public Domain() {
+    int id;        
+   public String username;
+   public String password;
+    public Login(){
+        
     }
 
-    public Domain(String lab) {
-        this.label = lab;
+    public Login(String username, String password) {
+        this.username= username;
+        this.password = password;
     }
     
     
+
+
+
 }

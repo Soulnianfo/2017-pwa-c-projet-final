@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import lombok.Data;
 
 /**
@@ -27,26 +28,34 @@ public class Competition {
     @GeneratedValue(strategy=GenerationType.AUTO)
     long id;
     
-    String titre;
-    String description;
+    String title;
+    String descrip;
+    
+    @ManyToOne
+    Company creator;
     
     @ManyToMany
     List<Skills> reqSkills = new ArrayList<>();
     
-    Date begin;
-    Date end;
+    String beginMonth;
+    
+    String beginYear;
+    
+    String endMonth;
+    
+    String endYear;
 
     public Competition() {
         
     }
     
-    public Competition(long id, String titre,  Date begin, Date end, String description, List<Skills> l) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.begin = begin;
-        this.end = end;
-        this.reqSkills = l;
-    }           
-    
+    public Competition(String title, String description, Company creator, String beginMonth, String beginYear, String endMonth, String endYear) {
+        this.title = title;
+        this.descrip = description;
+        this.creator = creator;
+        this.beginMonth = beginMonth;
+        this.beginYear = beginYear;
+        this.endMonth = endMonth;
+        this.endYear = endYear;
+    }    
 }

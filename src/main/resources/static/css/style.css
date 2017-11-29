@@ -1,9 +1,10 @@
 .menu1 {
-    background: yellowgreen;
+    background: white;
     position: fixed;
-    height: 100%;
+    height: 340px;
     width: 20%;
     padding-top: 60px;
+    margin-left: 15px;
 }
 .menu1 > h3 {
     text-align: center;
@@ -14,9 +15,20 @@
 .greatWindows {
     padding-top: 100px;
     padding-left: 300px;
+    width: 70%;
 }
 nav .menu{
     padding-top: 20px;
+}
+.profileS {
+    
+}
+.profileS > img {
+    height: 45%;
+    width: 85%;
+    margin: 8%;
+        /* Make it a circle */
+    
 }
 
 body > .windows{
@@ -144,7 +156,6 @@ select{
     margin: 5px 0;
 }
 
-
 #log {
 margin-left: 1050px;
 border: 1px solid ;
@@ -156,9 +167,7 @@ border: 1px solid ;
 }
 
 #button{
-    margin-left: 510px;
-    /*  // <button for ="modal_1" id="companyButton" class="mainButton">Company</button>*/
-    font-size: 35px;
+  font-size: 35px;
 }
 #studentButton{
     font-size: 35px;
@@ -178,4 +187,26 @@ border: 1px solid ;
 #buttonColor {
     background-color: black;
 }
+#connex{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
 
+#connex .connex{
+    width: 20%;
+}
+.comp_stud_button{
+    margin-top: 0.5%;
+    margin-left: 35%;
+}
+#NewMember{
+    margin-top: 15%;
+    margin-left: 42%;
+    font-size: 30px;
+}
+p:hover{
+     text-decoration: underline;
+     color: brown;
+}
+     

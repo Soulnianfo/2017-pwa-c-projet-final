@@ -7,16 +7,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" th:href="@{/css/picnic.css}"/>
         <link rel="stylesheet" th:href="@{/css/style.css}"/>
-        <script src="vue.js"></script>
+         
         
     </head>
     <body>
         
-        
+    
         <div id="page">
             <div id="headd">
                 <div id="top">
                     <div id="menu">
+                        <div>
+                        <a th:href="@{/home}" > Home </a> 
+                        </div>
                         <div>
                            Profil 
                         </div>
@@ -25,6 +28,9 @@
                         </div>
                         <div>
                             Notifications
+                        </div>
+                        <div>
+                            <a th:href="@{/logout}">LougOut</a> 
                         </div>
                     </div>
                     <div id="search">
@@ -36,23 +42,29 @@
             <div id="bodyy">
                 <div class="card genral">
                     <div class="img left">
-                        <img th:src="@{/images/excilis.png}"/>
+                        <img th:src="${images+''+student.username+''+type}"/>
+                        
+                        <button v-on:click="ShowImg"> change picture </button>
+                    
+                        <form v-if="showImg" method="post" th:action="@{/changeImg}" enctype="multipart/form-data">
+                            <input type="file" name="photo" />
+                            <input type="submit" value="save" v-on:click="HiddenImg"/>
+                        </form>
                     </div>
                     <div class="right info">
-                        <h1>NAME STUDENT</h1>
+                        <h1 th:text="${student.username}">NAME STUDENT</h1>
                         <div>
-                            <span>
-                              ID STUDENT
+                            <span id="id_class" th:text="${student.id}">
+                              
                             </span>
                         </div>
                         <div>
                             CITY STUDENT - 120 Abonés
                         </div>
-                        <div>
-                            <button>Suivre</button>
-                        </div>
+                        
                     </div>
                 </div>
+           
                 <article class="card more">
                     <header>
                         <a href="#"> <h3> A PROPOS </h3> </a>
@@ -61,9 +73,10 @@
                         DU CONTENU ICI
                     </footer>
                 </article>
+                
                 <article class="card more">
                     <header>
-                        <a href="#"> <h3> LES PROJETS </h3> </a>
+                        <h3> LES PROJETS </h3>
                        <label for="modal_1" class="button">+</label>
 
                         <div class="modal">
@@ -76,12 +89,12 @@
                             </header>
                             <section class="content">
                                 <form>
-                                    <input type="text" placeholder="Titre du Project"/>
+                                    <input type="text" v-model="newProject.title" placeholder="Titre du Project"/>
                                     <div>
                                         <div>
                                             <span> Date Début</span>
                                             <div>
-                                                <select>
+                                                <select v-model="newProject.beginMonth">
                                                     <option>Mois</option>
                                                     <option>Janvier</option>
                                                     <option>Février</option>
@@ -98,7 +111,7 @@
                                                 </select>
                                             </div>
                                             <div>
-                                                <select>
+                                                <select v-model="newProject.beginYear">
                                                     <option>Année</option>
                                                     <option>2017</option>
                                                     <option>2016</option>
@@ -118,7 +131,7 @@
                                         <div>
                                             <span> Date Fin</span>
                                             <div>
-                                                <select>
+                                                <select v-model="newProject.endMonth">
                                                     <option>Mois</option>
                                                     <option>Janvier</option>
                                                     <option>Février</option>
@@ -135,7 +148,7 @@
                                                 </select>
                                             </div>
                                             <div>
-                                                <select>
+                                                <select v-model="newProject.endYear">
                                                     <option>Année</option>
                                                     <option>2017</option>
                                                     <option>2016</option>
@@ -153,103 +166,163 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <textarea placeholder="Description"></textarea>
+                                    <textarea v-model="newProject.descrip" placeholder="Description"></textarea>
                                 </form>
                             </section>
                             <footer>
-                              <a class="button" href="#">See offer</a>
-                              <label for="modal_1" class="button dangerous">
-                                Cancel
-                              </label>
+                                
+                                <a class="button" v-on:click.prevent="addProject">Ajouter</a>
+                                <label for="modal_1" class="button dangerous">
+                                  Annuler
+                                </label>
                             </footer>
                           </article>
                         </div>
                     </header>
                     <footer>
-                            <div id="project">
-                                <ul>
-                                  <li class="list" v-if="show1">                                     
-                                        <nav class="demo">                                           
-                                            <a class="brand left" th:text ="${myprojects[0].name}"></a>                                           
-                                            <div class="menu">
-                                              
-                                              <a href="#" class="pseudo button icon-picture" th:text="${myprojects[0].autor}"></a>
-                                              <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${myprojects[0].id})}">More Details</a>
-                                            </div>                                           
-                                        </nav>
-                                    </li>
-                                    <template v-if ="show">
-                                        <button  v-on:click="Show2"> show all</button>
-                                    </template>
-                                </ul> 
-                                <template v-if="show2">
-                                    <ul th:each="proj : ${myprojects}">
-                                        <li class="list">                                     
-                                            <nav class="demo">
-                                                <a class="brand" th:text ="${proj.name}"></a>
-                                                
-                                                <div class="menu">
-                                                  <a href="#" class="pseudo button icon-picture" th:text="${proj.autor}"></a>
-                                                  <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${proj.id})}">More Details</a>
-                                                </div>
-                                            </nav>
+                        <div v-for="pro in projects" class="card">
+                            <header>
+                                <h4>{{pro.title}}</h4> Du <span>{{pro.beginMonth}}-{{pro.beginYear}}</span> 
+                                                        à <span>{{pro.endMonth}}-{{pro.endYear}}</span>
+                            </header>
+                            <footer>
+                                <p>{{pro.descrip}}</p>
+                            </footer>
+                            <label for="modal_2" class="button">more details</label>
+                            <div class="modal"> 
+                              <input id="modal_2" type="checkbox" />
+                              <label for="modal_2" class="overlay"></label>
+                              <article>
+                                <header>
+                                  <h3><a href="#" >{{pro.title}}</a></h3>
+                                  <label for="modal_2" class="close">&times;</label>
+                                </header>
 
-                                        </li>
-                                        <hr/>
-                                    </ul> 
-                                </template>
-                                
-                                <template v-if ="!show">
-                                    <button  v-on:click="Hidden2">&DoubleUpArrow;</button>
-                                </template>
+                                <section class="content">
+
+                                    <p>{{pro.descrip}}</p>                               
+                                </section>
+                                <footer>
+                                  <label class="button">
+                                    Modifie
+                                  </label>
+                                  <label for="modal_2" class="button dangerous">
+                                    Cancel
+                                  </label>
+                                </footer>
+                                  </article>
                             </div>
+                        </div>
                     </footer>
                 </article>
+                
+                
+                 <article class="card more" id= "formation">
+                    <header>
+                       <h3> FORMATIONS </h3>
+                       
+                       <label for="modal_3" class="button">+</label>
+
+                        <div class="modal">
+                          <input id="modal_3" type="checkbox" />
+                          <label for="modal_3" class="overlay"></label>
+                          <article>
+                            <header>
+                              <h3>add new formation</h3>
+                              {{newFormation.name}}
+                              <label for="modal_3" class="close">&times;</label>
+                              
+                            </header>
+                            <form method="post" >
+                            <section class="content">
+                                
+                                    <select v-model="newFormation.domain">
+                                        <option>domain</option>
+                                        <option>Informatique / Reseau</option>
+                                        <option>Physique </option>
+                                        <option>Agroalimentaire</option>
+                                        <option> Électronique / Électricité</option>
+                                        <option> Banque / Assurance</option>
+                                        <option> BTP / Matériaux de construction</option>
+                                        <option>Chimie / Parachimie</option>
+                                        <option>Commerce / Négoce / Distribution</option>
+                                        <option>Bois / Papier / Carton / Imprimerie</option>
+                                    </select>
+                                    <input type="text" v-model="newFormation.name" placeholder="formation name"/>
+                                    <input type="text" v-model="newFormation.dateBegin" placeholder="begin : jj/mm/year"/>
+                                    <input type="text" v-model="newFormation.dateEnd" placeholder="end : jj/mm/year"/>
+                                    
+    
+                            </section>
+                            <footer>
+                                <button v-on:click="addFormation"> addFormation </button>
+                              <label for="modal_3" class="button dangerous">
+                                Cancel
+                              </label>
+                            </footer>
+                           </form>
+                          </article>
+                        </div>
+
+                       
+                       
+                    </header>
+                    <footer>
+                        <div v-for="f in formations">
+                            {{f.dateBegin}}-{{f.dateEnd}}: {{f.name}}
+                            <hr/>
+                        </div>
+                            
+                     
+                    </footer>
+                </article>
+                
+                
                 <article class="card more">
                     <header>
-                        <a href="#">  <h3> LES COMPETITION </h3> </a>
+                      <h3> LES COMPETITION </h3>
                        <button> + </button>
                     </header>
                     <footer>
                         DU CONTENU ICI
                     </footer>
                 </article>
-                
+                <div id="skill">
                 <article class="card more">
                     <header>
                        <h3> SKILLS </h3>
                        
-                       <label for="modal_2" class="button">+</label>
+                       <label for="modal_4" class="button">+</label>
 
                         <div class="modal">
-                          <input id="modal_2" type="checkbox" />
-                          <label for="modal_2" class="overlay"></label>
+                          <input id="modal_4" type="checkbox" />
+                          <label for="modal_4" class="overlay"></label>
                           <article>
                             <header>
                               <h3>choiced or put your skill</h3>
-                              <label for="modal_2" class="close">&times;</label>
+                              <label for="modal_4" class="close">&times;</label>
                             </header>
-                            <form method="post" th:action="@{/addskill}" th:object="${skill}">
-                            <section class="content">
-                                
-                                    <select>
+                            <form>
+                                <section class="content">
+
+                                    <select v-model="newSkill.label">
                                         <option>Spring Boot</option>
                                         <option>Vue</option>
                                         <option>thymeleaf</option>
                                         <option>HTML</option>
                                         <option>CSS</option>
                                     </select>
-                                    <input type="text" th:field="*{label}" placeholder="put your skill"/>
-                                    
-                               
-                            </section>
-                            <footer>
-                              <input class="button" type="submit" value="add" />
-                              <label for="modal_2" class="button dangerous">
-                                Cancel
-                              </label>
-                            </footer>
-                                 </form>
+                                    <input type="text" v-model="newSkill.label" placeholder="put your skill"/>
+
+
+                                </section>
+                                <footer>
+                                  <button v-on:click="addSkill"> add Skill </button>
+                                  <label for="modal_4" class="button dangerous">
+                                    Cancel
+                                  </label>
+                                </footer>
+                            </form>
                           </article>
                         </div>
 
@@ -266,102 +339,20 @@
                      
                     </footer>
                 </article>
+                </div>
             </div>
             
             <div id="foooter">
                 <h1>LE FOOTER</h1>
+                 
             </div>
             
         </div>
       
-        <div id="app">
-          
-        </div>
-        <div v-if="type=== 1">
-         <p>affichage</p>
-        </div>
-        <div id="pp">
-            <template v-if="itemsInStock">
-                
-            </template>
-                <button v-on:click ="myfunction">button</button>
-                <button v-on:click ="myfunction2">button2</button>
-        </div>
-        <div id="aff">
-            <aff>message</aff>
-        </div>
         
- 
-        <script>
-              var app = new Vue({
-                  el: '#project',
-                    data: {
-                            show: true,
-                            show1: true,
-                            show2: false
-                          
-                    },
-                    methods: {
-                       Show :function() {
-                            this.show = true ;
-                        },
-                        Hidden : function() {
-                            this.show = false ;
-                        },
-                        Show1 :function() {
-                            this.show1 = true ;
-                        },
-                        Hidden1 : function() {
-                            this.show1 = false ;
-                        },
-                       Show2 :function() {
-                            this.show2 = true;
-                            this.show1 = false;
-                            this.show = false;
-                        },
-                        Hidden2 : function() {
-                            this.show2 = false;
-                            this.show1 = true;
-                            this.show = true;
-                        } 
-                       
-                       
-                        
-                    }
-                    
-                  
-              });
-              new Vue({
-                    el: '#aff',
-                    elementDirectives: {
-                      aff: {
-                        bind: function() {
-                          this.el.style.visibility = 'hidden';
-                        }
-                      }
-                    }
-                  });
-
-
-     
-        </script>
-        <!--<div class="menu1">  
-        </div>
-        <div class="great_windows">
-          <ul th:each="proj : ${myprojects}">
-                <li>                                     
-                    <nav class="demo">
-                        <a class="brand" th:text ="${proj.name}"></a>
-                        <span th:text="${proj.descrip}"></span>
-                        <div class="menu">
-                          <a href="#" class="pseudo button icon-picture" th:text="${proj.autor}"></a>
-                          <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${proj.id})}">More Details</a>
-                        </div>
-                    </nav>
-          
-                </li>
-            </ul> 
-        </div> -->
-          
+       <script type="text/javascript"  th:src="@{/vue.js}"></script>
+        <script type="text/javascript"  src="/js/vue-resource.min.js"></script> 
+        <script type="text/javascript"  th:src="@{/js/student_profile.js}"></script> 
+       
     </body>
 </html>

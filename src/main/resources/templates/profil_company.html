@@ -8,9 +8,8 @@ and open the template in the editor.
     <head>
         <link rel="stylesheet" type="text/css" th:href="@{/css/picnic.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-        <script type="text/javascript" th:src="@{/js/vue.js}"></script>
         
-        <title th:text="${company.nom}">Mon Entreprise</title>
+        <title th:text="${company.name}">Mon Entreprise</title>
         <meta charset="UTF-8"/>
     </head>
     <body th:inline="text">
@@ -19,17 +18,20 @@ and open the template in the editor.
                 <div id="top">
                     <div id="menu">
                         <div>
-                           Profil 
+                            <a th:href="@{/profil_company}">Profile </a>
                         </div>
                         <div>
-                            Messagérie
+                            Messages
                         </div>
                         <div>
                             Notifications
                         </div>
+                        <div>
+                            <a th:href="@{/logout}">LougOut</a> 
+                        </div>
                     </div>
                     <div id="search">
-                        <input type="text" v-model="leMessage" size="40" maxlength="100"/>
+                        <input type="text" size="40" maxlength="100" v-model="leMessage2" placeholder="Rechercher"/>
                     </div>
                 </div>
             </div>
@@ -40,26 +42,50 @@ and open the template in the editor.
                         <img th:src="@{/images/excilis.png}"/>
                     </div>
                     <div class="right info">
-                        <h1>[[${company.nom}]]</h1>
+                        <span class="id_class" id="idd" th:text="${company.id}"></span>
+                        <span class="id_class" id="usn" th:text="${company.username}"></span>
+                        <span class="id_class" id="psw" th:text="${company.pswd}"></span>
+                        <span class="id_class" id="mail" th:text="${company.email}"></span>
+                        <h1 id="comp_name" th:text="${company.name}"></h1>
                         <div>
-                            <span th:each="d : ${company.listDom}">
-                                [[${d.nom}]],
+                            <span class="comp_dom" th:each="d : ${company.domList}">
+                                [[${d.label}]]
                             </span>
                         </div>
+                        <div id="comp_city" th:text="${company.city}">{{compa.city}}</div>
                         <div>
-                            [[${company.ville}]] - 120 Abonés
-                        </div>
-                        <div>
-                            <button>{{leMessage}}</button>
+                            <label for="modal_com" class="button">Modifer</label>
+                            <div class="modal">
+                               <input id="modal_com" type="checkbox" />
+                               <label for="modal_com" class="overlay"></label>
+                               <article>
+                                 <header>
+                                   <h3>Modifer Vos Informations</h3>
+                                   <label for="modal_com" class="close">&times;</label>
+                                 </header>
+                                 <section class="content">
+                                     <form>
+                                         <input type="text" v-model="compa.name" placeholder="My company's name"/>
+                                         <input type="text" v-model="compa.city" placeholder="My company's location"/>
+                                         <textarea v-model="compa.description" placeholder="About My Company"></textarea>
+                                         
+                                     </form>
+                                 </section>
+                                 <footer>
+                                    <a class="button" v-on:click.prevent="modCompany">Valider</a>
+                                    <label for="modal_com" class="button dangerous">Annuler</label>
+                                 </footer>
+                               </article>
+                            </div>      
                         </div>
                     </div>
                 </div>
                 <article class="card more">
                     <header>
-                       <h3> A PROPOS </h3>
+                        <h3>About My Company</h3>
                     </header>
                     <footer>
-                        DU CONTENU ICI
+                        <span id="comp_descrip" th:text="${company.description}"></span>
                     </footer>
                 </article>
                 <article class="card more">
@@ -77,12 +103,12 @@ and open the template in the editor.
                             </header>
                             <section class="content">
                                 <form>
-                                    <input type="text" placeholder="Titre du Project"/>
+                                    <input type="text" v-model="newProject.title" placeholder="Titre du Project"/>
                                     <div>
-                                        <div>
+                                        <div> 
                                             <span> Date Début</span>
                                             <div>
-                                                <select>
+                                                <select v-model="newProject.beginMonth">
                                                     <option>Mois</option>
                                                     <option>Janvier</option>
                                                     <option>Février</option>
@@ -98,8 +124,9 @@ and open the template in the editor.
                                                     <option>Décembre</option>
                                                 </select>
                                             </div>
+
                                             <div>
-                                                <select>
+                                                <select v-model="newProject.endYear">
                                                     <option>Année</option>
                                                     <option>2017</option>
                                                     <option>2016</option>
@@ -119,7 +146,7 @@ and open the template in the editor.
                                         <div>
                                             <span> Date Fin</span>
                                             <div>
-                                                <select>
+                                                <select v-model="newProject.endMonth">
                                                     <option>Mois</option>
                                                     <option>Janvier</option>
                                                     <option>Février</option>
@@ -136,7 +163,7 @@ and open the template in the editor.
                                                 </select>
                                             </div>
                                             <div>
-                                                <select>
+                                                <select v-model="newProject.endYear">
                                                     <option>Année</option>
                                                     <option>2017</option>
                                                     <option>2016</option>
@@ -154,20 +181,133 @@ and open the template in the editor.
                                             </div>
                                         </div>
                                     </div>
-                                    <textarea placeholder="Description"></textarea>
+                                    <textarea v-model="newProject.descrip" placeholder="Description"></textarea>
                                 </form>
                             </section>
                             <footer>
-                              <a class="button" href="#">Ajouter</a>
-                              <label for="modal_1" class="button dangerous">
-                                Annuler
-                              </label>
+                                
+                                <a class="button" v-on:click.prevent="addProject">Ajouter</a>
+                                <label for="modal_1" class="button dangerous">
+                                  Annuler
+                                </label>
                             </footer>
                           </article>
                         </div>
                     </header>
                     <footer>
-                        DU CONTENU ICI
+                        <div v-for="(pro, index) in projects" class="card">
+                            <header >
+                                <h4>{{pro.title}}</h4> Du <span>{{pro.beginMonth}}-{{pro.beginYear}}</span> 
+                                                        à <span>{{pro.endMonth}}-{{pro.endYear}}</span>
+                        
+                                    <label for="modal_3" class="button" v-on:click.prevent="modProAddress(pro._links.self.href,index)">Modify</label>                        
+                                         
+                                    <button class="error" v-on:click.prevent="delProject(pro._links.self.href)">Delete</button>
+                            </header>
+                            <footer>
+                                <p>{{pro.descrip}}</p>
+                            </footer>
+                        </div>
+                        <div class="modal">
+                            <input id="modal_3" type="checkbox" />
+                            <label for="modal_3" class="overlay"></label>
+                            <article>
+                              <header>
+                                <h3>Modifier le projet</h3>
+                                <label for="modal_3" class="close" >&times;</label>
+                              </header>
+                              <section class="content"  >
+                                  <form>
+                                      <input type="text" v-model="modProject.title" placeholder="Titre du Project"/>
+                                      <div>
+                                          <div> 
+                                              <span> Date Début</span>
+                                              <div>
+                                                  <select v-model="modProject.beginMonth">
+                                                      <option>Mois</option>
+                                                      <option>Janvier</option>
+                                                      <option>Février</option>
+                                                      <option>Mars</option>
+                                                      <option>Avril</option>
+                                                      <option>Mai</option>
+                                                      <option>Juin</option>
+                                                      <option>Juillet</option>
+                                                      <option>Août</option>
+                                                      <option>Septembre</option>
+                                                      <option>Octobre</option>
+                                                      <option>Novembre</option>
+                                                      <option>Décembre</option>
+                                                  </select>
+                                              </div>
+
+                                              <div>
+                                                  <select v-model="modProject.endYear">
+                                                      <option>Année</option>
+                                                      <option>2017</option>
+                                                      <option>2016</option>
+                                                      <option>2015</option>
+                                                      <option>2014</option>
+                                                      <option>2013</option>
+                                                      <option>2012</option>
+                                                      <option>2011</option>
+                                                      <option>2010</option>
+                                                      <option>2009</option>
+                                                      <option>2008</option>
+                                                      <option>2007</option>
+                                                      <option>2006</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          <div>
+                                              <span> Date Fin</span>
+                                              <div>
+                                                  <select v-model="modProject.endMonth">
+                                                      <option>Mois</option>
+                                                      <option>Janvier</option>
+                                                      <option>Février</option>
+                                                      <option>Mars</option>
+                                                      <option>Avril</option>
+                                                      <option>Mai</option>
+                                                      <option>Juin</option>
+                                                      <option>Juillet</option>
+                                                      <option>Août</option>
+                                                      <option>Septembre</option>
+                                                      <option>Octobre</option>
+                                                      <option>Novembre</option>
+                                                      <option>Décembre</option>
+                                                  </select>
+                                              </div>
+                                              <div>
+                                                  <select v-model="modProject.endYear">
+                                                      <option>Année</option>
+                                                      <option>2017</option>
+                                                      <option>2016</option>
+                                                      <option>2015</option>
+                                                      <option>2014</option>
+                                                      <option>2013</option>
+                                                      <option>2012</option>
+                                                      <option>2011</option>
+                                                      <option>2010</option>
+                                                      <option>2009</option>
+                                                      <option>2008</option>
+                                                      <option>2007</option>
+                                                      <option>2006</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <textarea v-model="modProject.descrip" placeholder="Description"></textarea>
+                                  </form>
+                              </section>
+                              <footer>
+
+                                  <a class="button" v-on:click.prevent="modifyProject">Valider</a>
+                                  <label for="modal_3" class="button dangerous">
+                                    Annuler
+                                  </label>
+                              </footer>
+                            </article>
+                        </div>                     
                     </footer>
                 </article>
                 <article class="card more">
@@ -184,12 +324,13 @@ and open the template in the editor.
                             </header>
                             <section class="content">
                                 <form>
-                                    <input type="text" placeholder="Titre du Project"/>
+                                    <input type="text" v-model="newCompet.title" placeholder="Titre du Project"/>
+                                    
                                     <div>
                                         <div>
                                             <span> Date Début</span>
                                             <div>
-                                                <select>
+                                                <select v-model="newCompet.beginMonth">
                                                     <option>Mois</option>
                                                     <option>Janvier</option>
                                                     <option>Février</option>
@@ -206,7 +347,7 @@ and open the template in the editor.
                                                 </select>
                                             </div>
                                             <div>
-                                                <select>
+                                                <select v-model="newCompet.beginYear">
                                                     <option>Année</option>
                                                     <option>2017</option>
                                                     <option>2016</option>
@@ -226,7 +367,7 @@ and open the template in the editor.
                                         <div>
                                             <span> Date Fin</span>
                                             <div>
-                                                <select>
+                                                <select v-model="newCompet.endMonth">
                                                     <option>Mois</option>
                                                     <option>Janvier</option>
                                                     <option>Février</option>
@@ -243,7 +384,7 @@ and open the template in the editor.
                                                 </select>
                                             </div>
                                             <div>
-                                                <select>
+                                                <select v-model="newCompet.endYear">
                                                     <option>Année</option>
                                                     <option>2017</option>
                                                     <option>2016</option>
@@ -261,7 +402,7 @@ and open the template in the editor.
                                             </div>
                                         </div>
                                     </div>
-                                    <textarea placeholder="Description"></textarea>
+                                    <textarea v-model="newCompet.descrip" placeholder="Description"></textarea>
                                    
                                     <div>
                                         <h3>Les compétences réquises</h3>
@@ -270,7 +411,7 @@ and open the template in the editor.
                                 </form>
                             </section>
                             <footer>
-                              <a class="button" href="#">Ajouter</a>
+                              <a class="button" v-on:click.prevent="addCompet">Ajouter</a>
                               <label for="modal_2" class="button dangerous">
                                 Annuler
                               </label>
@@ -279,7 +420,122 @@ and open the template in the editor.
                         </div>
                     </header>
                     <footer>
-                        DU CONTENU ICI
+                        <div v-for="comp in compets" class="card">
+                            <header>
+                                <h4>{{comp.title}}</h4> Du <span>{{comp.beginMonth}}-{{comp.beginYear}}</span> 
+                                                        à <span>{{comp.endMonth}}-{{comp.endYear}}</span>
+                                <label for="modal_4" class="button" v-on:click.prevent="modCompAddress(comp._links.self.href,index)">Modify</label>                        
+                                         
+                                <button class="error" v-on:click.prevent="delCompet(comp._links.self.href)">Delete</button>
+                            </header>
+                            <footer>
+                                <p>{{comp.descrip}}</p>
+                            </footer>
+                        </div>
+                        <div class="modal">
+                          <input id="modal_4" type="checkbox" />
+                          <label for="modal_4" class="overlay"></label>
+                          <article>
+                            <header>
+                              <h3>Modifier la compétition</h3>
+                              <label for="modal_4" class="close">&times;</label>
+                            </header>
+                            <section class="content">
+                                <form>
+                                    <input type="text" v-model="modCompet.title" placeholder="Titre du Project"/>
+         
+                                    <div>
+                                        <div>
+                                            <span> Date Début</span>
+                                            <div>
+                                                <select v-model="modCompet.beginMonth">
+                                                    <option>Mois</option>
+                                                    <option>Janvier</option>
+                                                    <option>Février</option>
+                                                    <option>Mars</option>
+                                                    <option>Avril</option>
+                                                    <option>Mai</option>
+                                                    <option>Juin</option>
+                                                    <option>Juillet</option>
+                                                    <option>Août</option>
+                                                    <option>Septembre</option>
+                                                    <option>Octobre</option>
+                                                    <option>Novembre</option>
+                                                    <option>Décembre</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select v-model="modCompet.beginYear">
+                                                    <option>Année</option>
+                                                    <option>2017</option>
+                                                    <option>2016</option>
+                                                    <option>2015</option>
+                                                    <option>2014</option>
+                                                    <option>2013</option>
+                                                    <option>2012</option>
+                                                    <option>2011</option>
+                                                    <option>2010</option>
+                                                    <option>2009</option>
+                                                    <option>2008</option>
+                                                    <option>2007</option>
+                                                    <option>2006</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span> Date Fin</span>
+                                            <div>
+                                                <select v-model="modCompet.endMonth">
+                                                    <option>Mois</option>
+                                                    <option>Janvier</option>
+                                                    <option>Février</option>
+                                                    <option>Mars</option>
+                                                    <option>Avril</option>
+                                                    <option>Mai</option>
+                                                    <option>Juin</option>
+                                                    <option>Juillet</option>
+                                                    <option>Août</option>
+                                                    <option>Septembre</option>
+                                                    <option>Octobre</option>
+                                                    <option>Novembre</option>
+                                                    <option>Décembre</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select v-model="modCompet.endYear">
+                                                    <option>Année</option>
+                                                    <option>2017</option>
+                                                    <option>2016</option>
+                                                    <option>2015</option>
+                                                    <option>2014</option>
+                                                    <option>2013</option>
+                                                    <option>2012</option>
+                                                    <option>2011</option>
+                                                    <option>2010</option>
+                                                    <option>2009</option>
+                                                    <option>2008</option>
+                                                    <option>2007</option>
+                                                    <option>2006</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea v-model="modCompet.descrip" placeholder="Description"></textarea>
+                                   
+                                    <div>
+                                        <h3>Les compétences réquises</h3>
+                                        <input type="text" placeholder="Ajouter une nouvelle compétence"/>
+                                    </div>
+                                </form>
+                            </section>
+                            <footer>
+                              <a class="button" v-on:click.prevent="modifyCompet">Ajouter</a>
+                              <label for="modal_4" class="button dangerous">
+                                Annuler
+                              </label>
+                            </footer>
+                          </article>
+                        </div>
                     </footer>
                 </article>
             </div>
@@ -289,28 +545,8 @@ and open the template in the editor.
             </div>
             
         </div>
-        <script type="text/javascript">
-            var monvue = new Vue({
-                el: '#bodyy',
-                data: {
-                  leMessage: 'Suivre',
-                  leMessage2: 'autre'
-                },
-                methods: {
-                  mettreAuRandom: function() {
-                    this.leMessage = ('RND: '+Math.random()).slice(0, 10);
-                  }
-                },
-                computed: {
-                  leMessageEnMajuscules: function() {
-                    return this.leMessage.toUpperCase();
-                  },
-                  toto: {
-                    get: function() { return "TOTO"; },
-                    set: function(v) { this.leMessage = this.leMessage2 = v;}
-                  }
-                }
-              });
-        </script>
+        <script type="text/javascript" th:src="@{/vue.js}"></script>
+        <script type="text/javascript" th:src="@{/js/vue-resource.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/company.js}"></script>
     </body>
 </html>

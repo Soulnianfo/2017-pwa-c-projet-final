@@ -7,8 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" th:href="@{/css/picnic.css}"/>
         <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <script src="vue.js"></script>
+        <script src="js/vue-resource.min.js"></script>
+        
     </head>
     <body>
+    <div id="bodyyy">
          <div id="page">
             <div id="headd">
                 <div id="top">
@@ -22,6 +26,7 @@
                         <div>
                             Notifications
                         </div>
+                        
                     </div>
                     <div id="search">
                         <input type="text" placeholder="Recherche" size="40" maxlength="100"/>
@@ -30,40 +35,123 @@
             </div>
          </div>
         <div class=" menu1 windows"> 
-            <div>
+            
                 
-                <label class="dropimage profile">
-                    <img th:src="@{images/excilis.png}" name="filea" title="Drop image or click me" type="file"/>
+                <label class=" profileS">
+                    
+                    <img src="/images/tux.jpg" th:src="${images+''+student.username+''+type}" alt=""/>
+                        
                 </label>
-
-            </div>
-            <h3>
-            <span th:text="${student.name}"></span>
-            <span th:text="${student.firstName}"></span>
-            </h3>
+           
+                <h3 th:text="${student.name}+' '+${student.firstName}"> </h3>
+                
+            
         </div>
        
         <div class="windows greatWindows">
             
-            <ul th:each="proj : ${projects}" >
+            
+            <h3>company's projects </h3>
+            
+            
+            <ul th:each="proj : ${compete}" >
+               
                 <li class="homeProject">                                     
-                    
-                        <a class="brand" th:text ="${proj.name}"></a>
-                        <label> Publié par </label>
-                        <a href="#" th:text="${proj.autor}"></a>
-                         <hr/>
-                         <p th:text="${proj.descrip} "></p>
-  
-                        <div>
+                    <span>
+                        <a th:href="@{/profilAuthor(id = ${proj.author.id})}" th:text="${proj.author.name}"></a>
+                        
+                         a publié :
+                        <label class="brand" th:text ="${proj.title}"></label>
+                    </span>
+                        <hr/>
+                         
+                          <label for="modal_2" class="button">more details</label>
                           
-                          <a href="#" class="button icon-puzzle" th:href="@{/projectDetail(cid=${proj.id})}">More Details</a>
+                        <div class="modal"> 
+                            <input id="modal_2" type="checkbox" />
+                            <label for="modal_2" class="overlay"></label>
+                            <article>
+                                <header>
+                                    <h3><a href="#" th:text="${proj.title}"></a></h3>
+                                    <label for="modal_2" class="close">&times;</label>
+                                </header>
+
+                                <section class="content">
+                                    <p th:text="${proj.descrip} "></p>                               
+                                </section>
+                                <footer>
+                                    <label for="modal_2" class="button dangerous"> cancel </label>
+                                     
+                                </footer>
+
+                            </article>
                         </div>
-                   
-          
                 </li>
-                <hr/>
+            
             </ul>
+            
+            
+            
+            
+            <h3>Student's projects</h3>
+            <ul th:each="proj : ${projects}" >
+               
+                <li class="homeProject">                                     
+                    <span>
+                        <a th:href="@{/profilAuthor(id = ${proj.author.id})}" th:text="${proj.author.name}"></a>
+                        
+                         a publié :
+                        <label class="brand" th:text ="${proj.title}"></label>
+                    </span>
+                        <hr/>
+                         
+                          <label for="modal_2" class="button">more details</label>
+                          
+                        <div class="modal"> 
+                            <input id="modal_2" type="checkbox" />
+                            <label for="modal_2" class="overlay"></label>
+                            <article>
+                                <header>
+                                    <h3><a href="#" th:text="${proj.title}"></a></h3>
+                                    <label for="modal_2" class="close">&times;</label>
+                                </header>
+
+                                <section class="content">
+                                    <p th:text="${proj.descrip} "></p>                               
+                                </section>
+                                <footer>
+                                    <label for="modal_2" class="button dangerous"> cancel </label>
+                                     
+                                </footer>
+
+                            </article>
+                        </div>
+                </li>
+            
+            </ul>
+            
         </div>
+        <script>
+            var v = new Vue({
+                el: '#bodyyy',
+                data: {
+                    show : false,
+                    hidden : true
+                },
+                methods: {
+                    Show :function() {
+                         this.show = true ;
+                     },
+                    Hidden : function() {
+                       this.show = false ;
+                    }
+                }
+                
+            });
+        </script>
         
+        <script type="text/javascript"  th:src="@{/vue.js}"></script>
+        <script type="text/javascript"  src="/js/vue-resource.min.js"></script> 
+    </div>
     </body>
 </html>

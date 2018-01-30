@@ -26,7 +26,9 @@
                         <div>
                             Notifications
                         </div>
-                        
+                        <div>
+                            <a th:href="@{/logout}">LougOut</a> 
+                        </div>
                     </div>
                     <div id="search">
                         <input type="text" placeholder="Recherche" size="40" maxlength="100"/>
@@ -35,97 +37,90 @@
             </div>
          </div>
         <div class=" menu1 windows"> 
-            
-                
-                <label class=" profileS">
-                    
-                    <img src="/images/tux.jpg" th:src="${images+''+student.username+''+type}" alt=""/>
-                        
-                </label>
+            <label class=" profileS">                   
+                    <img src="/images/tux.jpg" th:src="${images+''+student.username+''+type}" alt=""/>                        
+            </label>
            
-                <h3 th:text="${student.name}+' '+${student.firstName}"> </h3>
-                
-            
+            <h3 th:text="${student.name}+' '+${student.firstName}"> </h3>          
         </div>
        
         <div class="windows greatWindows">
             
             
-            <h3>company's projects </h3>
+            <h3 class="affich_h3">company's projects </h3>
             
             
             <ul th:each="proj : ${compete}" >
                
-                <li class="homeProject">                                     
-                    <span>
-                        <a th:href="@{/profilAuthor(id = ${proj.author.id})}" th:text="${proj.author.name}"></a>
-                        
-                         a publié :
-                        <label class="brand" th:text ="${proj.title}"></label>
-                    </span>
-                        <hr/>
-                         
-                          <label for="modal_2" class="button">more details</label>
-                          
-                        <div class="modal"> 
-                            <input id="modal_2" type="checkbox" />
-                            <label for="modal_2" class="overlay"></label>
-                            <article>
-                                <header>
-                                    <h3><a href="#" th:text="${proj.title}"></a></h3>
-                                    <label for="modal_2" class="close">&times;</label>
-                                </header>
+                <li class="homeProject">   
+                    <article>
+                        <header class="title">
+                            <a th:href="@{/profilAuthor(id = ${proj.creator.id})}" th:text="${proj.creator.name}"></a>
+                             a publié :
+                            <label class="brand" th:text ="${proj.title}"></label>
+                        </header>
+                        <footer>
+                            <p th:text="${proj.title}">no description</p>
+                            <label for="modal_2" >more details</label>  
+                            <div class="modal"> 
+                                <input id="modal_2" type="checkbox" />
+                                <label for="modal_2" class="overlay"></label>
+                                <article>
+                                    <header>
+                                        <h3><a href="#" th:text="${proj.title}"></a></h3>
+                                        <label for="modal_2" class="close">&times;</label>
+                                    </header>
 
-                                <section class="content">
-                                    <p th:text="${proj.descrip} "></p>                               
-                                </section>
-                                <footer>
-                                    <label for="modal_2" class="button dangerous"> cancel </label>
-                                     
-                                </footer>
+                                    <section class="content">
+                                        <p th:text="${proj.descrip} "></p>                               
+                                    </section>
+                                    <footer>
+                                        <label for="modal_2" class="button dangerous"> cancel </label>
 
-                            </article>
-                        </div>
+                                    </footer>
+
+                                </article>
+                            </div>
+                        </footer>
+                    </article>
                 </li>
             
             </ul>
-            
-            
-            
-            
-            <h3>Student's projects</h3>
+         
+            <h3 class="affich_h3">Student's projects</h3>
             <ul th:each="proj : ${projects}" >
                
                 <li class="homeProject">                                     
-                    <span>
-                        <a th:href="@{/profilAuthor(id = ${proj.author.id})}" th:text="${proj.author.name}"></a>
-                        
-                         a publié :
-                        <label class="brand" th:text ="${proj.title}"></label>
-                    </span>
-                        <hr/>
-                         
-                          <label for="modal_2" class="button">more details</label>
-                          
-                        <div class="modal"> 
-                            <input id="modal_2" type="checkbox" />
-                            <label for="modal_2" class="overlay"></label>
-                            <article>
-                                <header>
-                                    <h3><a href="#" th:text="${proj.title}"></a></h3>
-                                    <label for="modal_2" class="close">&times;</label>
-                                </header>
+                    <article>
+                        <header class="title">
+                            <a th:href="@{/profilAuthor(id = ${proj.author.id})}" th:text="${proj.author.name}"></a>
+                             a publié :
+                            <label class="brand" th:text ="${proj.title}"></label>
+                        </header>
+                        <footer>
+                            <p>blabla</p>
+                            <label for="modal_2" >more details</label>  
+                            <div class="modal"> 
+                                <input id="modal_2" type="checkbox" />
+                                <label for="modal_2" class="overlay"></label>
+                                <article>
+                                    <header>
+                                        <h3><a href="#" th:text="${proj.title}"></a></h3>
+                                        <label for="modal_2" class="close">&times;</label>
+                                    </header>
 
-                                <section class="content">
-                                    <p th:text="${proj.descrip} "></p>                               
-                                </section>
-                                <footer>
-                                    <label for="modal_2" class="button dangerous"> cancel </label>
-                                     
-                                </footer>
+                                    <section class="content">
+                                        <p th:text="${proj.descrip} "></p>                               
+                                    </section>
+                                    <footer>
+                                        <label for="modal_2" class="button dangerous"> cancel </label>
 
-                            </article>
-                        </div>
+                                    </footer>
+
+                                </article>
+                            </div>
+                        </footer>
+                    </article>
                 </li>
             
             </ul>

@@ -45,31 +45,31 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Data 
 @Entity
-public class Student implements Serializable{
+public class Student{
     @Id
      @GeneratedValue(strategy=GenerationType.AUTO)
-    public Long id;
+    Long id;
     
     //@OneToOne
-    public String name;
+    String name;
     
     //@OneToOne
-    public String firstName;
+    String firstName;
     
    // @OneToOne
-    public String date;
+    String dateSt;
     
     //@OneToOne
-    public String passWord;
+    String passWord;
     
     //@OneToOne
-   public  String username;
+     String username;
     
     //@OneToOne
-    public String email;
+    String email;
 
    @ManyToMany(fetch = FetchType.EAGER)
-   public List<Student> followers ;
+   public List<Student> followers = new ArrayList<>();
     
    @ManyToMany(fetch = FetchType.EAGER,mappedBy="students")
    
@@ -84,15 +84,17 @@ public class Student implements Serializable{
     
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    public Set<UserRole> roles = new HashSet<>();
+    Set<UserRole> roles;
     public Student(){   
+        this.roles = new HashSet<>();
         this.roles.add(UserRole.STUDENT);
     }
     public Student(String name, String firstName,String date, String passWord,String speudo,String email){
+        this.roles = new HashSet<>();
          this.roles.add(UserRole.STUDENT);
         this.name = name;
         this.firstName = firstName;
-        this.date = date;
+        this.dateSt = date;
         this.passWord = passWord;
         this.username = speudo;
         this.email = email;

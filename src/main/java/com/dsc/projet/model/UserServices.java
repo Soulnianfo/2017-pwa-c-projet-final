@@ -43,7 +43,7 @@ public class UserServices implements UserDetailsService {
           System.err.println("USER: "+u);
          if (u != null) {
                  
-                 return new org.springframework.security.core.userdetails.User(u.getUsername(), u.getDerivedPassword(), u.getRoles());
+                 return new org.springframework.security.core.userdetails.User(u.username, u.passWord, u.roles);
 
         }
 

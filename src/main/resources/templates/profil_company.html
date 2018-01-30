@@ -17,8 +17,9 @@ and open the template in the editor.
             <div id="headd">
                 <div id="top">
                     <div id="menu">
+                       
                         <div>
-                            <a th:href="@{/profil_company}">Profile </a>
+                            <a th:href="@{/home_company}">Home</a>
                         </div>
                         <div>
                             Messages
@@ -38,9 +39,19 @@ and open the template in the editor.
             
             <div id="bodyy">
                 <div class="card genral">
+                    
                     <div class="img left">
-                        <img th:src="@{/images/excilis.png}"/>
+                        <img class="img_profil" th:src="${images+''+company.username+''+type}" title="change picture"  v-on:click="ShowImg"/>
+                       
+                        <form v-if="showImg" method="post" th:action="@{/changeImgComp}" enctype="multipart/form-data">
+                            <input type="file" name="photo" />
+                            <input type="submit" value="save" v-on:click="HiddenImg"/>
+                        </form>
                     </div>
+                  
+<!--                    <div class="img left">
+                        <img th:src="@{/images/excilis.png}"/>
+                    </div>-->
                     <div class="right info">
                         <span class="id_class" id="idd" th:text="${company.id}"></span>
                         <span class="id_class" id="usn" th:text="${company.username}"></span>
@@ -82,6 +93,7 @@ and open the template in the editor.
                 </div>
                 <article class="card more">
                     <header>
+                       
                         <h3>About My Company</h3>
                     </header>
                     <footer>
@@ -548,5 +560,6 @@ and open the template in the editor.
         <script type="text/javascript" th:src="@{/vue.js}"></script>
         <script type="text/javascript" th:src="@{/js/vue-resource.min.js}"></script>
         <script type="text/javascript" th:src="@{/js/company.js}"></script>
+        
     </body>
 </html>

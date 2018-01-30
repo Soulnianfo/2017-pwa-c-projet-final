@@ -5,6 +5,7 @@
  */
 package com.dsc.projet.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -22,7 +23,7 @@ import lombok.Data;
  */
 @Entity
 @Data
-public class Skills {
+public class Skills implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;

@@ -1,6 +1,8 @@
 
 package com.dsc.projet.controller;
 
+import com.dsc.projet.model.CompanyProject;
+import com.dsc.projet.model.CompanyProjectRepository;
 import com.dsc.projet.model.Project;
 import com.dsc.projet.model.ProjectRepos;
 import com.dsc.projet.model.SkillsRepository;
@@ -43,14 +45,14 @@ public class ControllerStudent {
     ProjectRepos repos;
     @Inject StudentRepos studRepos;
     @Inject SkillsRepository skillRepo;
-    @Inject ProjectRepos projectComp;
+    @Inject CompanyProjectRepository projectComp;
     
    
-    Student student1;
+
     @RequestMapping("/home")
     public String home(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
-        
+        System.out.println("Nom et prenom "+studRepos.findByUsername((String) session.getAttribute("username")).getUsername());
         model.addAttribute("projects", repos.findAll());
         model.addAttribute("compete", projectComp.findAll());
         model.addAttribute("student", studRepos.findByUsername((String) session.getAttribute("username")));
@@ -71,17 +73,11 @@ public class ControllerStudent {
     @RequestMapping("/monProfil")
     public String profil(Model model, HttpServletRequest request){
          HttpSession session = request.getSession();
-         Project p = new Project("monProject", "collaboration", "10", "2017", "12", "2017",
-               studRepos.findByUsername((String) session.getAttribute("username")));
-       studRepos.findByUsername((String) session.getAttribute("username")).myProjects.
-               add(p
-               );
-       ///repos.save(p);
-        System.out.println("project save: ok");
+         
         model.addAttribute("student", studRepos.findByUsername((String) session.getAttribute("username")));
        
         model.addAttribute("skills", skillRepo.findAll());
-        model.addAttribute("skill",new Skills());
+      
         model.addAttribute("images", "/images/");
         model.addAttribute("type", (String) session.getAttribute("type"));
         return "profil";
@@ -133,7 +129,7 @@ public class ControllerStudent {
             String newNom = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf('.'));
             //create path to store file
             System.out.println("type "+type);
-            String username = studRepos.findByUsername((String) session.getAttribute("username")).username;
+            String username = studRepos.findByUsername((String) session.getAttribute("username")).getUsername();
             Path path = Paths.get("src/main/resources/static/images/" + username+type);
             //test if the path exist
             Files.deleteIfExists(path);

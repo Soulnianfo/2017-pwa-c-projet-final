@@ -97,12 +97,12 @@ public class WelcomeController {
     public String addStudent(Student v, HttpServletRequest request){
        // studRep.save(v);
        HttpSession session = request.getSession();
-       session.setAttribute("username", v.username);
+       session.setAttribute("username", v.getUsername());
        
-        userService.saveStudentComputingDerivedPassword(v, v.passWord);
+        userService.saveStudentComputingDerivedPassword(v, v.getPassWord());
  
        // m.addAttribute("student", studRep.findByUsername(v.username));
-        System.out.println( "affichage du resultat inserer "+userService.loadUserByUsername(v.username));
+        System.out.println( "affichage du resultat inserer "+userService.loadUserByUsername(v.getUsername()));
         
         return "redirect:/monProfil";
         

@@ -38,6 +38,43 @@ and open the template in the editor.
             
             <div id="bodyy">
                 
+                <ul th:each="proj : ${compete}" >
+               
+                <li class="homeProject">   
+                    <article>
+                        <header class="title">
+                            <a th:href="@{/profilAuthor(id = ${proj.creator.id})}" th:text="${proj.creator.name}"></a>
+                             a publié :
+                            <label class="brand" th:text ="${proj.title}"></label>
+                        </header>
+                        <footer>
+                            <p th:text="${proj.title}">no description</p>
+                            <label for="modal_2" >more details</label>  
+                            <div class="modal"> 
+                                <input id="modal_2" type="checkbox" />
+                                <label for="modal_2" class="overlay"></label>
+                                <article>
+                                    <header>
+                                        <h3><a href="#" th:text="${proj.title}"></a></h3>
+                                        <label for="modal_2" class="close">&times;</label>
+                                    </header>
+
+                                    <section class="content">
+                                        <p th:text="${proj.descrip} "></p>                               
+                                    </section>
+                                    <footer>
+                                        <label for="modal_2" class="button dangerous"> cancel </label>
+
+                                    </footer>
+
+                                </article>
+                            </div>
+                        </footer>
+                    </article>
+                </li>
+            
+            </ul>
+                
             </div>
             
             <div id="foooter">

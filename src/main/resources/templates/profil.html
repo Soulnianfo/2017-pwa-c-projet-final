@@ -20,9 +20,7 @@
                         <div>
                         <a th:href="@{/home}" > Home </a> 
                         </div>
-                        <div>
-                           Profil 
-                        </div>
+                        
                         <div>
                             Messagérie
                         </div>
@@ -42,10 +40,8 @@
             <div id="bodyy">
                 <div class="card genral">
                     <div class="img left">
-                        <img th:src="${images+''+student.username+''+type}"/>
-                        
-                        <button v-on:click="ShowImg"> change picture </button>
-                    
+                        <img class="img_profil" th:src="${images+''+student.username+''+type}" title="change picture"  v-on:click="ShowImg"/>
+                      
                         <form v-if="showImg" method="post" th:action="@{/changeImg}" enctype="multipart/form-data">
                             <input type="file" name="photo" />
                             <input type="submit" value="save" v-on:click="HiddenImg"/>
@@ -54,7 +50,7 @@
                     <div class="right info">
                         <h1 th:text="${student.username}">NAME STUDENT</h1>
                         <div>
-                            <span id="id_class" th:text="${student.id}">
+                            <span class="id_class" id= "idSt" th:text="${student.id}">
                               
                             </span>
                         </div>
@@ -331,8 +327,8 @@
                     </header>
                     <footer>
                             <ul class="skill">                          
-                                <div th:each="skill : ${skills}">
-                                    <li th:text ="${skill.label}"></li>
+                                <div v-for="skill in skills">
+                                    <li>{{skill.label}}</li>
                                 </div>
                             </ul>
                             

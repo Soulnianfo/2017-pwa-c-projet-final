@@ -1,3 +1,7 @@
+a {
+    color: white;
+}
+
 .menu1 {
     background: white;
     position: fixed;
@@ -5,11 +9,14 @@
     width: 20%;
     padding-top: 60px;
     margin-left: 15px;
+    border: 0.1px solid black;
 }
 .menu1 > h3 {
     text-align: center;
     margin: auto;
-    background-color: white;
+    background-color: #d4c9c9;
+    border: 0.1px solid black;
+    padding-bottom: 61px;
 
 }
 .greatWindows {
@@ -52,10 +59,26 @@ body > .windows{
 
 }
 .homeProject{
-    padding: 60px;
+    padding-top: 54px;
+    padding-left: 10px;
+    padding-bottom: 5px;
     background: white;
     list-style: none;
-
+    border: 0.01em solid black;
+}
+.homeProject > article > header {
+   margin-top: -53px;
+    color: blue;
+    background: #9cabab;
+    margin-left: -9px;
+    marging-right: 100px;
+    /* border-bottom: 0.01em solid black; */
+    /* width: 100%; */
+    height: 33px;
+    text-align: center
+}
+.homeProject > article > footer > label {
+    color: blue;
 }
 .profile {
   border-radius: 50%;     /* Make it a circle */
@@ -110,7 +133,7 @@ body{
 }
 
 #menu > div{
-    width: 32.5%;
+    width: 18%;
     display: inline-block;
 }
 
@@ -149,7 +172,31 @@ form > div > div{
 .modal > article{
     width: 70%;
 }
-
+.id_class {
+    display: none;
+}
+.img_profil {
+    width: 100%;
+    height: 95%;
+}
+.genral {
+    display: inline-flex;
+    width: 100%;
+}
+.info {
+    width: 80%;
+    text-align: right;
+}
+.affich_h3 {
+    text-align: center;
+    color: cornflowerblue;
+    background: #7a8b98;
+    margin-left: 40px;
+        border: 1px solid white;
+}
+.card>* {
+    margin-bottom: 0px;
+}
 /*CSS ADEL*/
 
 select{

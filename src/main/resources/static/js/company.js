@@ -20,6 +20,8 @@ var monvue = new Vue({
       projects:[],
       compets:[],
       comp_dom:[],
+      showImg : false,
+      hidenImg: true,
       compa: {username: usn, pswd: psw, email: mail, name: comp_name, 
                 city: comp_city, description: comp_descrip},
    
@@ -183,7 +185,13 @@ var monvue = new Vue({
               resp => this.listDom = resp.body._embedded.domains, // OK
               console.log // ERREUR
             );
-        }
+        },
+         ShowImg :function() {
+                         this.showImg = true ;
+                     },
+        HiddenImg : function() {
+                   this.showImg = false ;
+                    }
     },
     computed: {
       

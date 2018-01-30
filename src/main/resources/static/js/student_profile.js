@@ -1,5 +1,5 @@
 
-var idSt = document.getElementById("id_class").textContent;
+var idSt = document.getElementById("idSt").textContent;
 var monvue = new Vue({
     el: '#bodyy',
     data: {
